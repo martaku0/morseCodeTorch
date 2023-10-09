@@ -19,11 +19,6 @@ public class EncodeActivity extends MainActivity {
 
         back = findViewById(R.id.back);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goBack();
-            }
-        });
+        back.setOnClickListener(view -> goBack());
     }
 }
