@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Arrays;
+
 public class DecodeActivity extends MainActivity {
 
     private Button back;
@@ -21,6 +23,7 @@ public class DecodeActivity extends MainActivity {
     private Button insertShort;
     private Button insertSpace;
     private Button decode;
+    private Button endChar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class DecodeActivity extends MainActivity {
         insertShort = findViewById(R.id.insertShort);
         insertSpace = findViewById(R.id.insertSpace);
         decode = findViewById(R.id.decode);
+        endChar =findViewById(R.id.endChar);
 
         back.setOnClickListener(view -> goBack());
 
@@ -73,6 +77,15 @@ public class DecodeActivity extends MainActivity {
             @Override
             public void onClick(View view) {
                 String temp = String.valueOf(encryptedMessage.getText());
+                temp += " | ";
+                encryptedMessage.setText(temp);
+            }
+        });
+
+        endChar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String temp = String.valueOf(encryptedMessage.getText());
                 temp += " ";
                 encryptedMessage.setText(temp);
             }
@@ -83,7 +96,22 @@ public class DecodeActivity extends MainActivity {
             public void onClick(View view) {
                 String encodedText = String.valueOf(encryptedMessage.getText());
                 String decodedText = "";
-                // decode
+                String[] cArr = encodedText.split(" ");
+                for(String s : cArr){
+                    Log.d("test", s);
+                    if(s.equals("|")){
+                        decodedText += " ";
+                    }
+                    else{
+                        int inx = Arrays.asList(morseCode).indexOf(s);
+                        if(inx > -1){
+                            decodedText += alphabet[inx].toLowerCase();
+                        }
+                        else{
+                            decodedText += s;
+                        }
+                    }
+                }
                 decryptedMessage.setText(decodedText);
             }
         });

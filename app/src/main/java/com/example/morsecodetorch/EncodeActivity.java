@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class EncodeActivity extends MainActivity {
 
     private Button back;
@@ -52,13 +55,22 @@ public class EncodeActivity extends MainActivity {
                 for (char c: textToEncode.toCharArray()
                      ) {
                     if(c == ' '){
-                        encodedText += " ";
+                        encodedText += " | ";
                     }
                     else{
-                        // coding
+                        c = Character.toUpperCase(c);
+                        int inx = Arrays.asList(alphabet).indexOf(String.valueOf(c));
+                        if(inx > -1){
+                            encodedText += morseCode[inx];
+                        }
+                        else{
+                            encodedText += c;
+                        }
+                        encodedText += " ";
                     }
                 }
                 encryptedMessage.setText(encodedText);
+                hideKeyboard((Button)view);
             }
         });
 
