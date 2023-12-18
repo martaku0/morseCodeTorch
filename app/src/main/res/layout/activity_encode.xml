@@ -84,14 +84,35 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="back"
-        android:textSize="24dp"
-        android:gravity="center"
-        android:layout_gravity="end"
-        />
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/flashlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="flashlight"
+            android:textSize="24dp"
+            />
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="back"
+            android:textSize="24dp"
+            />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id = "@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:visibility="invisible"/>
 
 </LinearLayout>
